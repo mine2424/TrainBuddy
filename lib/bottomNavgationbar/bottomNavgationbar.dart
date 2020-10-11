@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:trainBuddy/home/home.dart';
-import 'package:trainBuddy/models/mainModel.dart';
 import 'package:trainBuddy/routeMap/route.dart';
 import 'package:trainBuddy/station/station.dart';
 
@@ -22,42 +20,38 @@ class _BottomNavgationBarPageState extends State<BottomNavgationBarPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<MainModel>(
-      create: (_) => MainModel()..fetchOsakaMetroStation(),
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(30),
-          child: AppBar(
-            elevation: 0,
-            title: Text(
-              "train buddy",
-              style: TextStyle(color: Colors.white),
-            ),
-            backgroundColor: Colors.black,
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30),
+        child: AppBar(
+          elevation: 0,
+          title: Text(
+            "train buddy",
+            style: TextStyle(color: Colors.white),
           ),
-        ),
-        body: _pageWidgets.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                  color: Colors.white,
-                ),
-                label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.ac_unit, color: Colors.white),
-                label: 'station'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.photo_album, color: Colors.white),
-                label: 'route map'),
-          ],
-          currentIndex: _selectedIndex,
-          fixedColor: Colors.white,
           backgroundColor: Colors.black,
-          onTap: _onItemTapped,
-          type: BottomNavigationBarType.fixed,
         ),
+      ),
+      body: _pageWidgets.elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.ac_unit, color: Colors.white), label: 'station'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.photo_album, color: Colors.white),
+              label: 'route map'),
+        ],
+        currentIndex: _selectedIndex,
+        fixedColor: Colors.white,
+        backgroundColor: Colors.black,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }

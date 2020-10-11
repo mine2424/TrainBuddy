@@ -93,52 +93,67 @@ class EachStationPage extends StatelessWidget {
             if (osakaMetroRoute == "ニュートラム") {
               sortRouteStations = model.osakaMetroNewtrum;
             }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 20),
-                  child: IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                      ),
-                      onPressed: () => Navigator.of(context).pop()),
+            if (sortRouteStations.length == 0) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 2,
+                    ),
+                    CircularProgressIndicator(
+                        valueColor:
+                            new AlwaysStoppedAnimation<Color>(Colors.white))
+                  ],
                 ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: sortRouteStations.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return FlatButton(
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PersonalStation(
-                                    osakaMetroRoute: osakaMetroRoute,
-                                    stationLists: sortRouteStations[index],
-                                  ))),
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Text(
-                              sortRouteStations[index][0].toString(),
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                          ],
+              );
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, left: 20),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            );
+                        onPressed: () => Navigator.of(context).pop()),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: sortRouteStations.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return FlatButton(
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PersonalStation(
+                                      stationLists: sortRouteStations[index],
+                                    ))),
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Text(
+                                sortRouteStations[index][0].toString(),
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              );
+            }
           }),
         ),
       ),
     );
   }
 }
-

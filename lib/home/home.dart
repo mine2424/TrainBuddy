@@ -1,4 +1,3 @@
-
 import 'package:flappy_search_bar/search_bar_style.dart';
 
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:trainBuddy/home/personalHomeStation.dart';
 import 'package:trainBuddy/models/mainModel.dart';
 
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -15,13 +13,12 @@ class HomePage extends StatefulWidget {
 
 class SearchedStation {
   final String title;
-  final String destination;
+  final String route;
   final String link;
   final String map;
   final String position;
 
-  SearchedStation(
-      this.title, this.destination, this.link, this.map, this.position);
+  SearchedStation(this.title, this.route, this.link, this.map, this.position);
 }
 
 class _HomePageState extends State<HomePage> {
@@ -47,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                   minimumChars: 1,
                   placeHolder: Text(
                     '駅名を入力してください',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                   icon: Icon(
                     Icons.search,
@@ -71,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                             searchedStation.title,
                             style: TextStyle(color: Colors.white),
                           ),
-                          subtitle: Text(searchedStation.destination,
+                          subtitle: Text(searchedStation.route,
                               style: TextStyle(color: Colors.white)),
                         ),
                       ),

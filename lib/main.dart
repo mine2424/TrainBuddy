@@ -14,10 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      locale: Locale("ja", "JP"),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'NotoSerifJP'
       ),
       home: BottomNavgationBarPage(),
     );
