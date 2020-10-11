@@ -63,6 +63,4 @@ class MainModel extends ChangeNotifier {
     }
     notifyListeners();
   }
-  
 }
-

@@ -108,9 +108,3 @@ class PersonalStation extends StatelessWidget {
     );
   }
 }
-// Expanded(
-//   flex: 1,
-//   child: PhotoView(
-//     imageProvider: CachedNetworkImageProvider("http://via.placeholder.com/350x150"),
-//     ),
-// ),

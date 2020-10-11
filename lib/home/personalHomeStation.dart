@@ -9,27 +9,25 @@ class PersonalHomeStation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black54,
+        title: Text(
+          searchedStation.title,
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.of(context).pop()),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, left: 20),
-              child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                  ),
-                  onPressed: () => Navigator.of(context).pop()),
-            ),
-            Center(
-              child: Text(
-                searchedStation.title,
-                style: TextStyle(fontSize: 30, color: Colors.white),
-              ),
             ),
             SizedBox(height: 30),
             Center(

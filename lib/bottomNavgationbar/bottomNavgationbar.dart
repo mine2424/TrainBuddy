@@ -21,16 +21,13 @@ class _BottomNavgationBarPageState extends State<BottomNavgationBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(30),
-        child: AppBar(
-          elevation: 0,
-          title: Text(
-            "train buddy",
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.black,
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          "train buddy",
+          style: TextStyle(color: Colors.white),
         ),
+        backgroundColor: Colors.black,
       ),
       body: _pageWidgets.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -42,9 +39,9 @@ class _BottomNavgationBarPageState extends State<BottomNavgationBarPage> {
               ),
               label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.ac_unit, color: Colors.white), label: 'station'),
+              icon: Icon(Icons.train_outlined, color: Colors.white), label: 'station'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.photo_album, color: Colors.white),
+              icon: Icon(Icons.map_outlined,color: Colors.white),
               label: 'route map'),
         ],
         currentIndex: _selectedIndex,
