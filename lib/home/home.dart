@@ -4,6 +4,7 @@ import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:trainBuddy/home/personalHomeStation.dart';
 import 'package:trainBuddy/models/mainModel.dart';
+import 'package:trainBuddy/models/routeModel.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class SearchedStation {
 }
 
 class _HomePageState extends State<HomePage> {
+  var searchedOsakaMetroRoute;
   int count = 0;
   List sortStaitonData = [];
   List osakaMetroAllStations;
@@ -61,7 +63,8 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => PersonalHomeStation(
-                                    searchedStation: searchedStation))),
+                                      searchedStation: searchedStation,
+                                      ))),
                         child: ListTile(
                           title: Text(
                             searchedStation.title,

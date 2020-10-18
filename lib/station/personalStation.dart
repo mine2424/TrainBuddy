@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
 class PersonalStation extends StatelessWidget {
-  var stationLists;
-  PersonalStation({Key key, @required this.stationLists}) : super(key: key);
+  var stationLists, osakaMetroRoute;
+  PersonalStation(
+      {Key key, @required this.stationLists, @required this.osakaMetroRoute})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black54,
+        backgroundColor: Color(osakaMetroRoute["colorCode"]),
         title: Text(
           stationLists[0],
           style: TextStyle(color: Colors.white),

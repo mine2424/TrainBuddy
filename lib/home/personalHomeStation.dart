@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:trainBuddy/models/routeModel.dart';
 
 class PersonalHomeStation extends StatelessWidget {
-  var searchedStation;
+  var searchedStation, searchedOsakaMetroRoute;
   PersonalHomeStation({Key key, @required this.searchedStation})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    for (int index = 0; index < osakaMetroRoute.length; index++) {
+      if (osakaMetroRoute[index]['route'] == searchedStation.route) {
+        searchedOsakaMetroRoute = osakaMetroRoute[index];
+        print(searchedOsakaMetroRoute);
+      }
+    }
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black54,
+        backgroundColor: Color(searchedOsakaMetroRoute['colorCode']),
         title: Text(
           searchedStation.title,
           style: TextStyle(color: Colors.white),

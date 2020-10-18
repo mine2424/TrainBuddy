@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trainBuddy/home/home.dart';
-import 'package:trainBuddy/routeMap/route.dart';
+import 'package:trainBuddy/settings/setting.dart';
 import 'package:trainBuddy/station/station.dart';
 
 class BottomNavgationBarPage extends StatefulWidget {
@@ -10,7 +10,7 @@ class BottomNavgationBarPage extends StatefulWidget {
 
 class _BottomNavgationBarPageState extends State<BottomNavgationBarPage> {
   int _selectedIndex = 0;
-  final _pageWidgets = [HomePage(), StationRoutePage(), RouteMapPage()];
+  final _pageWidgets = [HomePage(), StationRoutePage(), SettingPage()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -34,15 +34,16 @@ class _BottomNavgationBarPageState extends State<BottomNavgationBarPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.home,
+                Icons.search,
                 color: Colors.white,
               ),
-              label: 'Home'),
+              label: 'Search'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.train_outlined, color: Colors.white), label: 'station'),
+              icon: Icon(Icons.train_outlined, color: Colors.white),
+              label: 'station'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.map_outlined,color: Colors.white),
-              label: 'route map'),
+              icon: Icon(Icons.settings, color: Colors.white),
+              label: 'setting'),
         ],
         currentIndex: _selectedIndex,
         fixedColor: Colors.white,

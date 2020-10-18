@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trainBuddy/models/mainModel.dart';
@@ -32,7 +30,7 @@ class StationRoutePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            osakaMetroRoute[index]["station"].toString(),
+                            osakaMetroRoute[index]["route"].toString(),
                             style:
                                 TextStyle(fontSize: 23.5, color: Colors.white),
                           ),
@@ -60,32 +58,31 @@ class EachStationPage extends StatelessWidget {
         create: (_) => MainModel()..fetchOsakaMetroStation(),
         child: Container(
           child: Consumer<MainModel>(builder: (context, model, child) {
-            
-            if (osakaMetroRoute["station"] == "御堂筋線") {
+            if (osakaMetroRoute["route"] == "御堂筋線") {
               sortRouteStations = model.osakaMetroMidousuji;
             }
-            if (osakaMetroRoute["station"] == "谷町線") {
+            if (osakaMetroRoute["route"] == "谷町線") {
               sortRouteStations = model.osakaMetroTanimachi;
             }
-            if (osakaMetroRoute["station"] == "四つ橋線") {
+            if (osakaMetroRoute["route"] == "四つ橋線") {
               sortRouteStations = model.osakaMetroYotsubashi;
             }
-            if (osakaMetroRoute["station"] == "中央線") {
+            if (osakaMetroRoute["route"] == "中央線") {
               sortRouteStations = model.osakaMetroChuou;
             }
-            if (osakaMetroRoute["station"] == "千日前線") {
+            if (osakaMetroRoute["route"] == "千日前線") {
               sortRouteStations = model.osakaMetroSennnichimae;
             }
-            if (osakaMetroRoute["station"] == "堺筋線") {
+            if (osakaMetroRoute["route"] == "堺筋線") {
               sortRouteStations = model.osakaMetroSakaisuji;
             }
-            if (osakaMetroRoute["station"] == "長堀鶴見緑地線") {
+            if (osakaMetroRoute["route"] == "長堀鶴見緑地線") {
               sortRouteStations = model.osakaMetroNagahoriturumiryokuchi;
             }
-            if (osakaMetroRoute["station"] == "今里筋線") {
+            if (osakaMetroRoute["route"] == "今里筋線") {
               sortRouteStations = model.osakaMetroImazatosuji;
             }
-            if (osakaMetroRoute["station"] == "ニュートラム") {
+            if (osakaMetroRoute["route"] == "ニュートラム") {
               sortRouteStations = model.osakaMetroNewtrum;
             }
             return Scaffold(
@@ -93,7 +90,7 @@ class EachStationPage extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: Color(osakaMetroRoute["colorCode"]),
                 title: Text(
-                  osakaMetroRoute["station"],
+                  osakaMetroRoute["route"],
                   style: TextStyle(color: Colors.white),
                 ),
                 leading: IconButton(
@@ -104,8 +101,8 @@ class EachStationPage extends StatelessWidget {
                     onPressed: () => Navigator.of(context).pop()),
               ),
               body: SingleChildScrollView(
-                //ListView.Builderでloadingがうまくいかなかったら
-                //ListView.Builderより一個前のwidgetで三項演算子によって書くべし
+                  //ListView.Builderでloadingがうまくいかなかったら
+                  //ListView.Builderより一個前のwidgetで三項演算子によって書くべし
                   child: (sortRouteStations.length == 0)
                       ? Center(
                           child: Column(
@@ -137,13 +134,15 @@ class EachStationPage extends StatelessWidget {
                                       color: Colors.white24,
                                       child: ListViewStations(
                                           sortRouteStations:
-                                              sortRouteStations[index]));
+                                              sortRouteStations[index],
+                                          osakaMetroRoute: osakaMetroRoute));
                                 } else {
                                   return Container(
                                     color: Colors.black,
                                     child: ListViewStations(
                                         sortRouteStations:
-                                            sortRouteStations[index]),
+                                            sortRouteStations[index],
+                                        osakaMetroRoute: osakaMetroRoute),
                                   );
                                 }
                               },
@@ -157,8 +156,11 @@ class EachStationPage extends StatelessWidget {
 }
 
 class ListViewStations extends StatelessWidget {
-  var sortRouteStations;
-  ListViewStations({Key key, @required this.sortRouteStations})
+  var sortRouteStations, osakaMetroRoute;
+  ListViewStations(
+      {Key key,
+      @required this.sortRouteStations,
+      @required this.osakaMetroRoute})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -171,6 +173,7 @@ class ListViewStations extends StatelessWidget {
               MaterialPageRoute(
                   builder: (context) => PersonalStation(
                         stationLists: sortRouteStations,
+                        osakaMetroRoute: osakaMetroRoute,
                       ))),
           child: Container(
             child: Column(
